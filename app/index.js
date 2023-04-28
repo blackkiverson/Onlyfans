@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native'
 import users from '../Asset Bundle OnlyFans/assets/data/users'
 import UserCard from '../src/components/UserCard';
+import { FlatList } from 'react-native-gesture-handler';
 
 // function UserCard({ user }) {
 
@@ -34,8 +35,12 @@ export default function Page() {
     return (
       <View style={styles.container}>
         {/* how to extract code into custom components */}
-        <UserCard user={users[0]} />
-        <UserCard user={users[1]} />
+        {/* <UserCard user={users[0]} /> */}
+        {/* <UserCard user={users[1]} /> */}
+        <FlatList
+          data={users}
+          renderItem={({ item }) => <UserCard user={item} />}
+        />
       </View>
     );
 }
