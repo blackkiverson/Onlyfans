@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, Image, ImageBackground } from "react-native";
+import { StyleSheet, Text, View, Image, ImageBackground, Pressable } from "react-native";
+import { Link } from "expo-router";
 
 export default function UserCard({ user }) {
   //function UserCard(props){
@@ -10,26 +11,35 @@ export default function UserCard({ user }) {
   //}
 
   return (
-    <ImageBackground source={{ uri: user.coverImage }} style={styles.userCard}>
-      <View style={styles.overlay} />
-      {/* Image */}
-      <Image src={user.avatar} style={styles.userImage} />
-
-      {/* Name & handle */}
-      <View>
-        <Text
-          style={{
-            color: "white",
-            fontSize: 22,
-            fontWeight: "500",
-            marginBottom: 5,
-          }}
+    <Link href={`/user/${user.id}`} asChild>
+      {/* using *template string* (``) to fetch user profile dynamically, based on UserCard clicked */}
+      {/* using asChild in the link component, the link component will us the child component instead of a text */}
+      <Pressable>
+        <ImageBackground
+          source={{ uri: user.coverImage }}
+          style={styles.userCard}
         >
-          {user.name}
-        </Text>
-        <Text style={{ color: "white" }}>@{user.handle}</Text>
-      </View>
-    </ImageBackground>
+          <View style={styles.overlay} />
+          {/* Image */}
+          <Image src={user.avatar} style={styles.userImage} />
+
+          {/* Name & handle */}
+          <View>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 22,
+                fontWeight: "500",
+                marginBottom: 5,
+              }}
+            >
+              {user.name}
+            </Text>
+            <Text style={{ color: "white" }}>@{user.handle}</Text>
+          </View>
+        </ImageBackground>
+      </Pressable>
+    </Link>
   );
 }
 
@@ -51,7 +61,7 @@ const styles = StyleSheet.create({
     // bottom: 0,
     // left: 0,
     // right: 0,
-    ...StyleSheet.absoluteFillObject,
+    // ...StyleSheet.absoluteFillObject,
   },
   userImage: {
     width: 100,

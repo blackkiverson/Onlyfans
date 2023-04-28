@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native'
+import { StyleSheet, View, FlatList} from 'react-native'
 import users from '../Asset Bundle OnlyFans/assets/data/users'
 import UserCard from '../src/components/UserCard';
-import { FlatList } from 'react-native-gesture-handler';
 
 // function UserCard({ user }) {
 
