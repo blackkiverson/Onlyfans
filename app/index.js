@@ -40,6 +40,7 @@ export default function Page() {
         <FlatList
           data={users}
           renderItem={({ item }) => <UserCard user={item} />}
+          showsVerticalScrollIndicator={false}
         />
       </View>
     );
