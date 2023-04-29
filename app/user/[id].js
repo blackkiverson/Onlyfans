@@ -21,15 +21,16 @@ const ProfilePage = () => {
 
   return (
     <View>
-      <UserProfileHeader
-        user={user}
-        isSubscribed={isSubscribed}
-        setIsSubscribed={setIsSubscribed}
-      />
-
-      <FlatList 
+      <FlatList
         data={posts}
-        renderItem={({item}) => <Post post={item} />}
+        renderItem={({ item }) => <Post post={item} />}
+        ListHeaderComponent={() => (
+          <UserProfileHeader
+            user={user}
+            isSubscribed={isSubscribed}
+            setIsSubscribed={setIsSubscribed}
+          />
+        )}
       />
     </View>
   );
