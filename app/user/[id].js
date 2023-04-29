@@ -3,8 +3,12 @@ import { useRouter, useSearchParams } from 'expo-router'
 import users from '../../Asset Bundle OnlyFans/assets/data/users';
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import { useState } from 'react';
 
 const ProfilePage = () => {
+  // subscription useState created for dynamic button and text interaction
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
   const router = useRouter();
   const { id } = useSearchParams();
 
@@ -77,9 +81,28 @@ const ProfilePage = () => {
           SUBSCRIPTION
         </Text>
 
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>SUBSCRIBE</Text>
-          <Text style={styles.buttonText}>
+        {/* subscription useState used to create dynamic buttons and text, changing () to [] */}
+        <Pressable
+          onPress={() => setIsSubscribed(!isSubscribed)}
+          style={
+            [styles.button,
+            { backgroundColor: isSubscribed ? "white" : "royalblue" }]
+          }
+        >
+          <Text
+            style={
+              [styles.buttonText,
+              { color: isSubscribed ? "royalblue" : "white" }]
+            }
+          >
+            {isSubscribed ? "SUBSCRIBED" : "SUBSCRIBE"}
+          </Text>
+          <Text
+            style={
+              [styles.buttonText,
+              { color: isSubscribed ? "royalblue" : "white" }]
+            }
+          >
             {user.subscriptionPrice === 0
               ? "FOR FREE"
               : `$${user.subscriptionPrice} / month`}
