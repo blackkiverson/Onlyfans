@@ -1,6 +1,7 @@
 import { StyleSheet, View, FlatList} from 'react-native'
 import users from '../Asset Bundle OnlyFans/assets/data/users'
 import UserCard from '../src/components/UserCard';
+import { Link } from 'expo-router';
 
 // function UserCard({ user }) {
 
@@ -36,6 +37,7 @@ export default function Page() {
         {/* how to extract code into custom components */}
         {/* <UserCard user={users[0]} /> */}
         {/* <UserCard user={users[1]} /> */}
+        <Link href={'/newPost'}>New Post</Link>
         <FlatList
           data={users}
           renderItem={({ item }) => <UserCard user={item} />}
