@@ -4,13 +4,13 @@ import UserCard from '../src/components/UserCard';
 
 // function UserCard({ user }) {
 
-//   //function UserCard(props){
-//   //  const user = props.user;
-//   //}
+//   function UserCard(props){
+//     const user = props.user;
+//   }
 
-//   //function UserCard(props){
-//   //  const {user} = props;
-//   //}
+//   function UserCard(props){
+//     const {user} = props;
+//   }
 
 //   return (
 //     <ImageBackground source={{uri : user.coverImage}} style={styles.userCard}>
@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
     // },
     // overlay: {
     //     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    //     // position: 'absolute',
-    //     // top: 0,
-    //     // bottom: 0,
-    //     // left: 0,
-    //     // right: 0,
+    //     position: 'absolute',
+    //     top: 0,
+    //     bottom: 0,
+    //     left: 0,
+    //     right: 0,
     //     ...StyleSheet.absoluteFillObject,
     // },
     // userImage: {
