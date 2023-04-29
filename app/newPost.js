@@ -5,8 +5,8 @@ import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
 
 const NewPost = () => {
+// handling text & image posts
   const [text, setText] = useState(''); 
-
   const [image, setImage] = useState('');
 
   const router = useRouter();
@@ -15,6 +15,7 @@ const NewPost = () => {
     console.warn('Post: ', text);
   }  
 
+//   expo image picker
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
