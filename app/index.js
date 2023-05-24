@@ -1,7 +1,10 @@
-import { StyleSheet, View, FlatList} from 'react-native'
-import users from '../Asset Bundle OnlyFans/assets/data/users'
+import { StyleSheet, View, FlatList, Text } from 'react-native'
 import UserCard from '../src/components/UserCard';
 import { Link } from 'expo-router';
+import { useAuthenticator } from '@aws-amplify/ui-react-native';
+import { useEffect, useState } from 'react';
+import { DataStore } from 'aws-amplify';
+import { User } from '../src/models';
 
 // function UserCard({ user }) {
 
@@ -32,12 +35,23 @@ import { Link } from 'expo-router';
 // }
 
 export default function Page() {
+
+  const [users, setUsers] = useState([]);
+
+  const { signOut } = useAuthenticator();
+
+  useEffect(() => {
+    //Fetch Users
+    DataStore.query(User).then(setUsers);
+  }, [])
+
     return (
       <View style={styles.container}>
         {/* how to extract code into custom components */}
         {/* <UserCard user={users[0]} /> */}
         {/* <UserCard user={users[1]} /> */}
         <Link href={'/newPost'}>New Post</Link>
+        <Text onPress={() => signOut()}>Sign Out</Text>
         <FlatList
           data={users}
           renderItem={({ item }) => <UserCard user={item} />}
