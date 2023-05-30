@@ -2,13 +2,25 @@ import { View, Text, Image } from 'react-native'
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { DataStore, Storage } from 'aws-amplify';
+import { User } from '../models';
 
 const Post = ({ post }) => {
+
+  const [user, setUser] = useState();
+  const [imageUri, setImageUri] = useState();
 
   // ties posts to the user that made the post
   useEffect(() => {
     DataStore.query(User, post.userID).then(setUser);
   }, []);
+
+  useEffect(() => {
+    if (post.image) {
+      Storage.get(post.image).then(setImageUri);
+    }
+  }, [post.image])
+  
   
 
   return (
@@ -50,7 +62,7 @@ const Post = ({ post }) => {
       <Text style={{ margin: 10, lineHeight: 18 }}>{post.text}</Text>
 
       {/* {removing image block on post if there is no image} */}
-      {post.image && (<Image src={post.image} style={{ width: "100%", aspectRatio: 1 }} />)}
+      {post.image && (<Image src={imageUri} style={{ width: "100%", aspectRatio: 1 }} />)}
 
       <View style={{ margin: 10, flexDirection: "row" }}>
         <AntDesign

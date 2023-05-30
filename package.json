@@ -29,7 +29,9 @@
     "react-native-screens": "~3.20.0",
     "react-native-web": "~0.18.7",
     "stream-to-async-iterator": "^1.0.0",
-    "tunnel": "^0.0.6"
+    "tunnel": "^0.0.6",
+    "uuidv4": "^6.2.13",
+    "expo-crypto": "~12.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
