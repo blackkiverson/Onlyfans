@@ -4,11 +4,18 @@ import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 const Post = ({ post }) => {
+
+  // ties posts to the user that made the post
+  useEffect(() => {
+    DataStore.query(User, post.userID).then(setUser);
+  }, []);
+  
+
   return (
     <View style={{ marginVertical: 15 }}>
       <View style={{ flexDirection: "row", alignItems: "center", padding: 5 }}>
         <Image
-          src={post.User.avatar}
+          src={user?.avatar}
           style={{
             width: 50,
             aspectRatio: 1,
@@ -18,9 +25,9 @@ const Post = ({ post }) => {
         />
         <View>
           <Text style={{ fontWeight: "600", marginBottom: 3, fontSize: 16 }}>
-            {post.User.name}
+            {user?.name}
           </Text>
-          <Text style={{ color: "gray" }}>@{post.User.handle}</Text>
+          <Text style={{ color: "gray" }}>@{user?.handle}</Text>
         </View>
 
         <View
@@ -42,7 +49,8 @@ const Post = ({ post }) => {
 
       <Text style={{ margin: 10, lineHeight: 18 }}>{post.text}</Text>
 
-      <Image src={post.image} style={{ width: "100%", aspectRatio: 1 }} />
+      {/* {removing image block on post if there is no image} */}
+      {post.image && (<Image src={post.image} style={{ width: "100%", aspectRatio: 1 }} />)}
 
       <View style={{ margin: 10, flexDirection: "row" }}>
         <AntDesign

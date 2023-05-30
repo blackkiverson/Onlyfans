@@ -3,16 +3,28 @@ import { useState } from 'react'
 import { Feather, Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
+import { DataStore } from 'aws-amplify';
+import { Post } from '../src/models';
+import { useAuthenticator } from '@aws-amplify/ui-react-native';
 
 const NewPost = () => {
 // handling text & image posts
   const [text, setText] = useState(''); 
   const [image, setImage] = useState('');
 
+  const { user } = useAuthenticator();
+
   const router = useRouter();
 
-  const onPost = () => {
+  const onPost = async () => {
     console.warn('Post: ', text);
+
+    // sending Posts to the Post database and linking it to a user
+    await DataStore.save(new Post({ text, likes: 0, userID: user.attributes.sub }));
+
+    setText('');
+
+    
   }  
 
 //   expo image picker
